@@ -1,6 +1,6 @@
 @include('partials.header')
 
-<div class="container">
+<div class="container mx-auto">
   <main class="main">
     @yield('content')
   </main>

@@ -1,6 +1,6 @@
-<header class="banner">
-  <div class="container">
-    <a class="brand" href="{{ home_url('/') }}">
+<header class="banner bg-brand-dark py-4">
+  <div class="container mx-auto flex justify-between">
+    <a class="font-bold text-brand" href="{{ home_url('/') }}">
       {{ $siteName }}
     </a>
 

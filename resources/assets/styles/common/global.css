@@ -3,7 +3,7 @@
  */
 
 a {
-  color: map-get($theme-colors, 'primary');
+  text-decoration: none;
 }
 
 /**
@@ -11,7 +11,7 @@ a {
  * @see https://git.io/JeyD6
  */
 
-@each $color-name, $color-value in $theme-colors {
+/* @each $color-name, $color-value in $theme-colors {
   .has-#{$color-name}-color {
     color: $color-value;
   }
@@ -19,4 +19,4 @@ a {
   .has-#{$color-name}-background-color {
     background-color: $color-value;
   }
-}
+} */

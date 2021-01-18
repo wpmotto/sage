@@ -16,16 +16,28 @@ require('laravel-mix-copy-watched');
 
 mix
   .setPublicPath('./dist')
-  .browserSync('sage.test');
+  .browserSync('mottowp.test');
 
 mix
-  .sass('resources/assets/styles/app.scss', 'styles')
-  .sass('resources/assets/styles/editor.scss', 'styles')
-  .purgeCss({
-    extend: { content: [path.join(__dirname, 'index.php')] },
-    whitelist: require('purgecss-with-wordpress').whitelist,
-    whitelistPatterns: require('purgecss-with-wordpress').whitelistPatterns,
-  });
+  .options({processCssUrls: false,})
+  .postCss('resources/assets/styles/app.css', 'styles', [
+    require('postcss-import'),
+    require('tailwindcss'),
+    require('postcss-nested'),
+    // require('postcss-custom-properties'),
+    // require('autoprefixer'),
+  ]);
+  // .postCss('resources/assets/styles/editor.css', 'styles', [
+  //   require('postcss-import'),
+  //   require('tailwindcss'),
+  //   require('postcss-nested'),
+  // ]);
+
+  // .purgeCss({
+  //   extend: { content: [path.join(__dirname, 'index.php')] },
+  //   whitelist: require('purgecss-with-wordpress').whitelist,
+  //   whitelistPatterns: require('purgecss-with-wordpress').whitelistPatterns,
+  // });
 
 mix
   .js('resources/assets/scripts/app.js', 'scripts')
@@ -38,7 +50,6 @@ mix
   .copyWatched('resources/assets/fonts/**', 'dist/fonts');
 
 mix
-  .autoload({ jquery: ['$', 'window.jQuery'] })
   .options({ processCssUrls: false })
   .sourceMaps(false, 'source-map')
   .version();

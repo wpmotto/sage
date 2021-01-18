@@ -1,0 +1,9 @@
+.nav-primary {
+    a {
+        @apply text-blue-100 hover:text-brand;
+    }
+
+    .nav {
+        @apply flex space-x-4;
+    }      
+}

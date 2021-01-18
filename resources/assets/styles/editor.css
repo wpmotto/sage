@@ -1,0 +1,17 @@
+/**
+* Editor
+*/
+
+@tailwind base;
+
+/** Common */
+@import 'common/global.css';
+
+/** Components */
+@tailwind components;
+@import 'components/button.css';
+.editor-styles-wrapper > * {
+}
+
+@tailwind utilities;
+
