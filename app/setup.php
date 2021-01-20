@@ -101,11 +101,6 @@ add_action('after_setup_theme', function () {
         ],
 
         /**
-         * Disable WordPress REST API
-         */
-        'disable-rest-api',
-
-        /**
          * Remove version query string from all styles and scripts
          */
         'disable-asset-versioning',
