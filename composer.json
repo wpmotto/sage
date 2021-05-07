@@ -40,6 +40,7 @@
   },
   "require": {
     "php": "^7.2.5",
+    "log1x/acf-composer": "^2.0",
     "log1x/sage-directives": "^1.1",
     "log1x/sage-svg": "^1.0",
     "roots/acorn": "^1.1"

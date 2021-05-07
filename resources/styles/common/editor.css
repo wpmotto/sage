@@ -1,0 +1,14 @@
+.editor-styles-wrapper > * {
+    .list-none {
+        list-style-type: none !important;
+    }
+    .absolute {
+        position: absolute !important;
+    }
+    img {
+        border-style: none;
+    }
+    .wp-block-image img[src$='.svg'] {
+        width: 100%;
+    }
+}

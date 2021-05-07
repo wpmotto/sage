@@ -1,0 +1,45 @@
+.has-text-align-center {
+    @apply text-center;
+}
+
+.wp-block-columns {
+    @apply flex;
+}
+
+.wp-block-column {
+    @apply flex-1;
+}
+
+.wrap {
+    @apply container mx-auto px-10 md:px-6;
+}
+
+.alignwide {
+    @screen md {
+        @apply container mx-auto px-10 md:px-6;
+    }
+}
+
+.alignfull {
+    margin-left: 50%;
+    margin-right:0;
+    transform: translateX(-50%);
+    width: 100vw;
+}
+
+.wp-block-cover {
+    @apply h-screen max-h-screen relative;
+
+    &__inner-container,
+    &__image-background {
+        @apply absolute top-0 left-0 right-0 bottom-0 w-full h-full;
+    }
+
+    &__inner-container {
+        @apply flex flex-col text-white justify-center items-center;
+    }
+
+    &__image-background {
+        @apply object-cover;
+    }
+}

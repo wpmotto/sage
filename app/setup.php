@@ -14,22 +14,12 @@ use function Roots\asset;
  * @return void
  */
 add_action('wp_enqueue_scripts', function () {
-    /**
-     * Only enqueue this once we have a need for
-     * a vendor file.
-     */
-    // wp_enqueue_script('sage/vendor.js', asset('scripts/vendor.js')->uri(), [], null, true);
-
-    wp_enqueue_script('sage/app.js', asset('scripts/app.js')->uri(), [
-        // 'sage/vendor.js'
-    ], null, true);
-
-    wp_add_inline_script('sage/vendor.js', asset('scripts/manifest.js')->contents(), 'before');
+    wp_enqueue_script('sage/app.js', asset('scripts/app.js')->uri(), [], null, true);
 
     if (is_single() && comments_open() && get_option('thread_comments')) {
         wp_enqueue_script('comment-reply');
     }
-
+        
     wp_enqueue_style('sage/app.css', asset('styles/app.css')->uri(), false, null);
 }, 100);
 
@@ -75,11 +65,6 @@ add_action('after_setup_theme', function () {
             'disable_emojis',
 
             /**
-             * Disable Gutenberg block library CSS.
-             */
-            'disable_gutenberg_block_css',
-
-            /**
              * Disable extra RSS feeds.
              */
             'disable_extra_rss',
@@ -111,45 +96,6 @@ add_action('after_setup_theme', function () {
         'disable-trackbacks',
 
         /**
-         * Google Analytics
-         */
-        'google-analytics' => [
-            /**
-             * This is to go live with GA.
-             *
-             * This should probably be false in non-production.
-             */
-            'should_load' => false,
-
-            /**
-             * Google Analytics ID
-             *
-             * This is also known as your "property ID" or "measurement ID"
-             *
-             * Format: UA-XXXXX-Y
-             */
-            'google_analytics_id' => null,
-
-            /**
-             * Optimize container ID
-             *
-             * Format: OPT-A1B2CD (previously: GTM-A1B2CD)
-             *
-             * @link https://support.google.com/optimize/answer/6262084
-             */
-            'optimize_id' => null,
-
-            /**
-             * Anonymize user IP addresses.
-             *
-             * This might be required depending on region.
-             *
-             * @link https://github.com/roots/soil/pull/206
-             */
-            'anonymize_ip',
-        ],
-
-        /**
          * Moves all scripts to wp_footer action
          */
         'js-to-footer',
@@ -179,6 +125,11 @@ add_action('after_setup_theme', function () {
      * @link https://developer.wordpress.org/reference/functions/add_theme_support/#title-tag
      */
     add_theme_support('title-tag');
+
+    /**
+     * Block Editor
+     */
+    add_theme_support('wp-block-styles');
 
     /**
      * Register navigation menus
@@ -237,6 +188,53 @@ add_action('after_setup_theme', function () {
             'color' => '#525ddc',
         ]
     ]);
+
+    add_theme_support(
+		'editor-font-sizes',
+		[
+            [
+                'name' => esc_attr__('H1', 'motto'),
+                'slug' => 'h1',
+                'size' => 54
+            ],
+            [
+                'name' => esc_attr__('H2', 'motto'),
+                'slug' => 'h2',
+                'size' => 48
+            ],
+            [
+                'name' => esc_attr__('H3', 'motto'),
+                'slug' => 'h3',
+                'size' => 30
+            ],
+            [
+                'name' => esc_attr__('H4', 'motto'),
+                'slug' => 'h4',
+                'size' => 24
+            ],
+            [
+                'name' => esc_attr__('Lead', 'motto'),
+                'slug' => 'lead',
+                'size' => 21
+            ],
+		]
+	);
+
+    /**
+     * Add Google Fonts Preconnect
+     */
+    add_action('wp_head', function(){
+        $fontUrl = "https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap";
+        echo <<<EOT
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="preload" as="style" href="$fontUrl">    
+        <link rel="stylesheet" media="print" onload="this.onload=null;this.removeAttribute('media');" href="$fontUrl">
+        <noscript>
+            <link rel="stylesheet" href="$fontUrl">
+        </noscript>    
+        EOT;
+    }, 1);
+
 }, 20);
 
 /**
