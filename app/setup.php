@@ -50,73 +50,19 @@ add_action('after_setup_theme', function () {
      * @link https://roots.io/plugins/soil/
      */
     add_theme_support('soil', [
-        /**
-         * Clean up WordPress
-         */
         'clean-up' => [
-            /**
-             * Obscure and suppress WordPress information.
-             */
             'wp_obscurity',
-
-            /**
-             * Disable WordPress emojis.
-             */
             'disable_emojis',
-
-            /**
-             * Disable extra RSS feeds.
-             */
             'disable_extra_rss',
-
-            /**
-             * Disable recent comments CSS.
-             */
             'disable_recent_comments_css',
-
-            /**
-             * Disable gallery CSS.
-             */
             'disable_gallery_css',
-
-            /**
-             * Clean HTML5 markup.
-             */
             'clean_html5_markup',
         ],
-
-        /**
-         * Remove version query string from all styles and scripts
-         */
         'disable-asset-versioning',
-
-        /**
-         * Disables trackbacks/pingbacks
-         */
         'disable-trackbacks',
-
-        /**
-         * Moves all scripts to wp_footer action
-         */
         'js-to-footer',
-
-        /**
-         * Cleaner walker for wp_nav_menu()
-         */
         'nav-walker',
-
-        /**
-         * Redirects search results from /?s=query to /search/query/, converts %20 to +
-         *
-         * @link http://txfx.net/wordpress-plugins/nice-search/
-         */
         'nice-search',
-
-        /**
-         * Convert absolute URLs to relative URLs
-         *
-         * Inspired by {@link http://www.456bereastreet.com/archive/201010/how_to_make_wordpress_urls_root_relative/}
-         */
         'relative-urls',
     ]);
 
@@ -136,7 +82,8 @@ add_action('after_setup_theme', function () {
      * @link https://developer.wordpress.org/reference/functions/register_nav_menus/
      */
     register_nav_menus([
-        'primary_navigation' => __('Primary Navigation', 'sage')
+        'primary_navigation' => __('Primary Navigation', 'sage'),
+        'mobile_navigation' => __('Mobile Navigation', 'sage'),
     ]);
 
     /**
@@ -177,48 +124,27 @@ add_action('after_setup_theme', function () {
      */
     add_theme_support('customize-selective-refresh-widgets');
 
+    $styles = json_decode(file_get_contents(get_stylesheet_directory() . "/styles.json"));
+
     /**
      * Enable theme color palette support
      * @link https://developer.wordpress.org/block-editor/developers/themes/theme-support/#block-color-palettes
      */
-    add_theme_support('editor-color-palette', [
-        [
-            'name' => __('Primary', 'sage'),
-            'slug' => 'primary',
-            'color' => '#525ddc',
-        ]
-    ]);
-
-    add_theme_support(
-		'editor-font-sizes',
-		[
-            [
-                'name' => esc_attr__('H1', 'motto'),
-                'slug' => 'h1',
-                'size' => 54
-            ],
-            [
-                'name' => esc_attr__('H2', 'motto'),
-                'slug' => 'h2',
-                'size' => 48
-            ],
-            [
-                'name' => esc_attr__('H3', 'motto'),
-                'slug' => 'h3',
-                'size' => 30
-            ],
-            [
-                'name' => esc_attr__('H4', 'motto'),
-                'slug' => 'h4',
-                'size' => 24
-            ],
-            [
-                'name' => esc_attr__('Lead', 'motto'),
-                'slug' => 'lead',
-                'size' => 21
-            ],
-		]
-	);
+    add_theme_support('editor-color-palette', array_map(function( $i ) {
+        return [
+            'name' => esc_attr__(ucwords($i->name)),
+            'slug' => $i->name,
+            'color' => $i->hex,
+        ];
+    }, $styles->colors ));
+    
+    add_theme_support( 'editor-font-sizes', array_map(function( $i ) {
+        return [
+            'name' => esc_attr__(strtoupper($i->name)),
+            'slug' => $i->name,
+            'size' => $i->px,
+        ];
+    }, $styles->fontSizes));
 
     /**
      * Add Google Fonts Preconnect

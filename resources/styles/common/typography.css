@@ -1,28 +1,23 @@
 .heading {
-    @apply font-heading font-semibold;
+    @apply font-heading font-semibold leading-snug;
 }
 
 .has-h-1-font-size,
 .h1 {
-    @apply heading text-h2 md:text-h1 leading-snug;
+    @apply heading sm:text-2xl md:text-3xl lg:text-4xl;
 }
 
 .has-h-2-font-size,
 .h2 {
-    @apply heading text-h3 md:text-h2 leading-snug;
+    @apply heading text-2xl md:text-3xl;
 }
 
 .has-h-3-font-size,
 .h3 {
-    @apply heading text-h4 md:text-h3;
+    @apply heading text-lg md:text-2xl;
 }
 
-.has-h-4-font-size,
-.h4 {
-    @apply heading text-h4;
-}
-
-.has-lead-font-size,
-.lead {
-    @apply font-heading text-lead;
+.has-h-5-font-size,
+.h5 {
+    @apply heading text-lg;
 }

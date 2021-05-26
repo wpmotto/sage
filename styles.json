@@ -1,0 +1,42 @@
+{
+    "fontSizes": [
+        {
+            "name": "h1",
+            "px": 48.83
+        },
+        {
+            "name": "h2",
+            "px": 39
+        },
+        {
+            "name": "h3", 
+            "px": 31.25
+        },
+        {
+            "name": "h4", 
+            "px": 25
+        },
+        {
+            "name": "h5", 
+            "px": 20
+        }
+    ],
+    "colors": [
+        {
+            "name": "primary",
+            "hex": "#14cdab"
+        },
+        {
+            "name": "dark",
+            "hex": "#1F1646"
+        },
+        {
+            "name": "light",
+            "hex": "#ffffff"
+        },
+        {
+            "name": "action",
+            "hex": "#F15159"
+        }
+    ]
+}
