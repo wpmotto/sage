@@ -6,7 +6,10 @@
 
 namespace App;
 
+use function Roots\view;
 use function Roots\asset;
+use Illuminate\Support\Str;
+use Illuminate\View\ComponentAttributeBag;
 
 /**
  * Register the theme assets.
@@ -185,4 +188,28 @@ add_action('widgets_init', function () {
         'name' => __('Footer', 'sage'),
         'id' => 'sidebar-footer'
     ] + $config);
+});
+
+/**
+ * Shortcodes
+ */
+add_action('init', function () {
+    add_shortcode('component', function($atts, $slot = null) {       
+        // Attributes
+        $name = $atts['name'];
+        unset($atts['name']);
+
+        $className = "\\App\\View\\Components\\" . Str::studly($name);
+        if( class_exists($className) )
+            return __('This shortcode only works with <a href="https://laravel.com/docs/8.x/blade#anonymous-components">anonymous components</a>.', 'motto');
+            // return (new $className)->render();
+
+        if( !view()->exists("components.$name") )
+            return __("No component class or view could be found from $name", 'motto');
+        
+        return view("components.$name", [
+            'slot' => $slot,
+            'attributes' => new ComponentAttributeBag($atts),
+        ])->render();
+    });
 });
