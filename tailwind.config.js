@@ -1,6 +1,11 @@
 const styles = require('./styles.json')
 const defaultTheme = require('tailwindcss/defaultTheme')
 
+const colors = {}
+styles.colors.forEach(i =>
+  colors[i.name == "primary" ? 'DEFAULT' : i.name] = i.hex
+)
+
 module.exports = {
   purge: [
     './resources/**/*.blade.php',
@@ -29,12 +34,7 @@ module.exports = {
         'heading': ['Poppins', ...defaultTheme.fontFamily.sans],
       },
       colors: {
-        brand: {
-          DEFAULT: '#14cdab',
-          dark: '#1F1646',
-          light: '#ffffff',
-          action: '#F15159',
-        }
+        brand: colors
       }
     },
   },
