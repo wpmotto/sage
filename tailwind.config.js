@@ -9,7 +9,7 @@ styles.colors.forEach(i =>
 module.exports = {
   purge: [
     './resources/**/*.blade.php',
-    './resources/**/*.js',
+    './resources/**/*.{js,vue}',
     '../../uploads/blaze.csv',
   ],
   darkMode: false, // or 'media' or 'class'

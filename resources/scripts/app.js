@@ -1,4 +1,11 @@
-import domReady from '@wordpress/dom-ready';
+import { createApp } from 'vue';
+import Modal from './components/Modal.vue';
+import SvgVue from 'svg-vue3';
+
+const app = createApp({});
+app.use(SvgVue);
+app.component('modal', Modal)
+  .mount('#app')
 
 /**
  * External Dependencies
@@ -11,6 +18,4 @@ document.querySelectorAll('[data-toggle-class]').forEach((element) => {
   });
 });
 
-domReady(() => {
-  console.log('DOM has loaded. Do other cool stuff. <= ./resources/assets/scripts/app/js');
-});
+console.log('DOM has loaded. Do other cool stuff. <= ./resources/assets/scripts/app/js');
