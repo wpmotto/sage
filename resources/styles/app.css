@@ -2,13 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-    @import 'common/global.css';
+@layer components {
     @import 'common/wordpress.css';
     @import 'common/typography.css';
-}
-
-@layer components {
     @import 'components/button.css';
     @import 'components/nav-primary.css';    
 }

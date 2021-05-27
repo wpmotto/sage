@@ -1,23 +1,21 @@
 <header class="banner bg-brand-dark py-4">
-  <div class="container mx-auto flex justify-between">
-    <a class="font-bold text-brand" href="{{ home_url('/') }}">
+  <div class="wrap flex justify-between">
+    <a class="font-bold text-brand inline-block" href="{{ home_url('/') }}">
       {{ $siteName }}
     </a>
 
-    <modal title="Example Modal">
-      <template v-slot:button>
-        <span class="text-white">Open a modal</span>
-      </template>
-      <template v-slot:body>
-        <div class="p-12">
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora quod et minima quam a molestias cum non rerum enim laborum ipsum, ratione eius consequuntur dolorum odit assumenda pariatur autem at.</p>
-        </div>
-      </template>
-    </modal>
-    <nav class="nav-primary">
+    <div>
+      @include('partials.example-modal')
+  
       @if (has_nav_menu('primary_navigation'))
-        {!! wp_nav_menu(['theme_location' => 'primary_navigation', 'menu_class' => 'nav', 'echo' => false]) !!}
+        {!! wp_nav_menu([
+          'container' => 'nav',
+          'container_class' => 'hidden md:block',            
+          'theme_location' => 'primary_navigation', 
+          'menu_class' => 'nav-primary flex space-x-6', 
+          'echo' => false
+        ]) !!}
       @endif
-    </nav>
+    </div>
   </div>
 </header>

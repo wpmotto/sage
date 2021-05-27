@@ -1,7 +1,7 @@
 @include('partials.header')
 
-<div class="container mx-auto">
-  <main class="main">
+<div class="wrap">
+  <main class="py-24">
     @yield('content')
   </main>
 

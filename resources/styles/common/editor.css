@@ -11,4 +11,7 @@
     .wp-block-image img[src$='.svg'] {
         width: 100%;
     }
+    .wp-block[data-align="wide"] > div {
+        @apply mx-auto;
+    }
 }
