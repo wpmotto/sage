@@ -35,7 +35,10 @@ module.exports = {
       },
       colors: {
         brand: colors
-      }
+      },
+      zIndex: {
+        '-1': '-1',
+      },
     },
   },
   variants: {

@@ -4,7 +4,8 @@
     }
 
     .sub-menu {
-        @apply origin-top absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none transform opacity-0 scale-95 text-gray-800;            
+        @apply origin-top absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none transform opacity-0 scale-95 text-gray-800 -z-1;
+        transition: 0.2s 1s; /* delay of 1 seconds on hover off */
 
         a {
             @apply block px-4 py-3;
@@ -12,8 +13,11 @@
     }
 
     .menu-item-has-children:hover {
+        @apply relative;
+
         .sub-menu {
-            @apply transform opacity-100 scale-100;
+            @apply transform opacity-100 scale-100 z-10;
+            transition-delay: 0s; /* react immediately on hover */
         }
     }
 }

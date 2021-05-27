@@ -2,8 +2,8 @@
  * Global
  */
 
-a {
-  text-decoration: none;
+.icon {
+  @apply inline-block;
 }
 
 /**

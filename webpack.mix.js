@@ -4,7 +4,7 @@ require('laravel-mix-svg-vue');
 
 mix
   .setPublicPath('./dist')
-  .browserSync('https://motto.test');
+  .browserSync('https://sandbox.test');
 
 mix
   .options({processCssUrls: false})

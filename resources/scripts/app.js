@@ -1,10 +1,13 @@
 import { createApp } from 'vue';
 import Modal from './components/Modal.vue';
+import SlideOver from './components/SlideOver.vue';
 import SvgVue from 'svg-vue3';
 
 const app = createApp({});
 app.use(SvgVue);
-app.component('modal', Modal)
+app
+  .component('modal', Modal)
+  .component('slide-over', SlideOver)
   .mount('#app')
 
 /**
