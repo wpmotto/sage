@@ -11,7 +11,30 @@
  * @see https://git.io/JeyD6
  */
 
-/* @each $color-name, $color-value in $theme-colors {
+/* @each $color in theme('colors.brand') {
+  .has-$(color)-color {
+    @apply text-$(color);
+  }
+  .has-$(color)-background-color {
+    @apply bg-$(color);
+  }
+} */
+/* .has-green-color {
+  @apply text-brand-green;
+}
+
+.has-blue-color {
+  @apply text-brand-blue;
+}
+
+.has-beige-color {
+  @apply text-brand-beige;
+}
+
+.has-seashell-color {
+  @apply text-brand-seashell;
+}
+@each $color-name, $color-value in $theme-colors {
   .has-#{$color-name}-color {
     color: $color-value;
   }

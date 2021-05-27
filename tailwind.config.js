@@ -1,5 +1,6 @@
 const styles = require('./styles.json')
 const defaultTheme = require('tailwindcss/defaultTheme')
+const plugin = require('tailwindcss/plugin')
 
 const colors = {}
 styles.colors.forEach(i =>
@@ -47,5 +48,19 @@ module.exports = {
   plugins: [
     require('@tailwindcss/typography'),
     require('@tailwindcss/forms'),
+    plugin(function({ theme, addUtilities, addComponents, e, prefix, config }) {
+      const newUtilities = Object.keys(theme('colors.brand')).map((k) => {
+          return {
+              [`.has-${k == "DEFAULT" ? 'primary' : k }-color`]: {
+                  color: theme('colors.brand')[k],
+              },
+              [`.has-${k == "DEFAULT" ? 'primary' : k }-background-color`]: {
+                  backgroundColor: theme('colors.brand')[k],
+              },
+          }
+      })
+
+      addUtilities(newUtilities)
+    }),    
   ],
 }
